@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+
+  function inputArray() {
+    let arr = [];
+    let count = prompt("Nhập vào số phần tử:");
+
+    if (count > 20) {
+      alert("Số phần tử lớn hơn 20");
+      return inputArray();
+    }
+
+    for (let i = 0; i < count; i++) {
+      let num = parseInt(prompt(`Nhập phần tử ${i + 1}:`));
+      arr.push(num);
+    }
+    return arr;
+  }
+
+  function findMultiplesOf3And5(arr) {
+    return arr.filter(num => num % 3 === 0 && num % 5 === 0);
+  }
+
+  function calculateSum(arr) {
+    return arr.reduce((sum, num) => sum + num, 0);
+  }
+
+
+  function main() {
+    let arr = inputArray();
+    document.write("Mảng:", arr + '<br>');
+
+    let multiplesOf3And5 = findMultiplesOf3And5(arr);
+    document.write("Bội chung của 3 và 5:", multiplesOf3And5 + '<br>');
+
+    let sum = calculateSum(multiplesOf3And5);
+    document.write("Tổng của số chia hết cho 3 và 5:", sum + '<br>');
+  }
+
+
+  main();
+
+
+
+
+</script>
+
+</body>
+</html>

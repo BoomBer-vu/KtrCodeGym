@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function studentScore(score){
+            if(score < 50){
+                return score;
+            }
+            let nextMultipleOf5 = Math.ceil(score/5) * 5;
+            if(nextMultipleOf5 - score < 3){
+                return nextMultipleOf5;
+
+            }else {
+                return score;
+            }
+
+    }
+    let score = +prompt("Nhập vào số điểm của học sinh(từ 0-100):  ")
+    alert('Điểm của học sinh là:  ' + studentScore(score));
+</script>
+
+</body>
+</html>

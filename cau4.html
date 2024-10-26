@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport">
+    <title>Quản lý khách hàng</title>
+    <style>
+
+        tr {
+            height: 50px;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #f4f4f4;
+        }
+
+        td {
+            text-align: center;
+            width: 200px;
+        }
+
+        button {
+            background-color: green;
+            color: white;
+            width: 70px;
+            height: 30px;
+            border: none;
+            border-radius: 5%;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+
+        img {
+            width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+
+ <h3 style="text-align:center; color:green; " > QUẢN LÝ KHÁCH HÀNG </h3>
+
+<div style="width: 610px; height: 100px; background-color: #f4f4f4;">
+    <div style="padding-top: 10px; padding-left: 40px">
+        <input type="text" id="productSearch" placeholder="Tìm kiếm khách hàng" style="width: 300px; height: 30px">
+        <button id="search">Search</button>
+
+        <input type="text" id="productAdd" placeholder="Thêm khách hàng" style="margin-top:5px; width: 300px; height: 30px">
+        <button id="add">Add</button>
+    </div>
+</div>
+<div id="result"></div>
+
+<script>
+    class Product {
+        id;
+        name;
+        phone;
+        address;
+        email;
+
+
+        constructor(id, name, phone, address, email) {
+            this.id = id;
+            this.name = name;
+            this.phone = phone;
+            this.address = address;
+            this.email = email;
+        }
+    }
+
+    let products = [];
+    products.push(new Product(1, "Nguyễn Văn A", 123456789, "Hà Nội", "A@gmail.com"));
+    products.push(new Product(2, "Nguyễn Văn B", 758946123, "Thanh Hóa", "B@gmail.com"));
+    products.push(new Product(3, "Nguyễn Văn C", 362514789, "Quảng Bình", "C@gmail.com"));
+    products.push(new Product(4, "Nguyễn Văn D", 753192684, "KonTum", "D@gmail.com"));
+    products.push(new Product(5, "Nguyễn Văn E", 248639571, "Đà Nẵng", "E@gmail.com"));
+
+
+    function display(products) {
+        let result = "<table>";
+        result += "<tr><th>ID</th><th>Name</th><th>Phone</th><th>Address</th><th>Email</th></tr>";
+        for (let i = 0; i < products.length; i++) {
+            result += "<tr>"
+            result +=  `<td>${products[i].id}</td>`
+            result +=  `<td>${products[i].name}</td>`
+            result +=  `<td>${products[i].phone}</td>`
+            result +=  `<td>${products[i].address}</td>`
+            result +=  `<td>${products[i].email}</td>`
+            result +="</tr>";
+        }
+        result += "</table>";
+        document.getElementById("result").innerHTML = result;
+    }
+
+    document.getElementById("add").addEventListener("click", function () {
+        let productAdd = document.getElementById("productAdd").value;
+        let productData = productAdd.split(",");
+
+        if (productData.length === 5) {
+            let newProduct = new Product(productData[0], productData[1], productData[2], productData[3], productData[4]);
+            products.push(newProduct);
+            display(products);
+            document.getElementById("productAdd").value = "";
+            alert("Thêm khách hàng thành công");
+        } else {
+            alert("Thông tin khách hàng phải đúng định dạng: ID, Tên, SĐT, Địa Chi, Email");
+        }
+    });
+
+    document.getElementById("search").addEventListener("click", function () {
+        let productSearch = document.getElementById("productSearch").value;
+        let result = products.filter(product => product.name.includes(productSearch));
+        display(result);
+    });
+
+    display(products);
+</script>
+</body>
+</html>

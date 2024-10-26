@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function numberAndArray(arr, k) {
+        let count = 0;
+        for (let i = 0; i < arr.length; i++) {
+            for (let j = i + 1; j < arr.length; j++) {
+                if ((arr[i] + arr[j]) % k === 0) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+    let arr = [1,2,3,4,5,6,7,8,9,10];
+    let k = +prompt("Nhập vào số k:  ");
+    alert("Số cặp mà tổng chia hết cho k =" + k + " là:" + numberAndArray(arr,k));
+
+
+</script>
+
+</body>
+</html>
